@@ -1,0 +1,65 @@
+<mat-toolbar color="primary">
+  <span>
+    <a routerLink="/">MEAN Posts</a>
+  </span>
+
+  <span class="spacer"></span>
+  
+  <ul *ngIf="!user">
+    <li>
+      <a 
+        mat-button
+        hover-class="mat-accent" 
+        routerLink="/auth/signin">
+        <mat-icon>arrow_right_alt</mat-icon>
+        <span>Sign In</span>
+      </a>
+    </li>
+
+    <li>
+      <a 
+        mat-button
+        hover-class="mat-accent" 
+        routerLink="/auth/signup">
+        <mat-icon>vertical_align_top</mat-icon>
+        <span>Sign Up</span>
+      </a>
+    </li>
+  </ul>
+  
+  <ul *ngIf="user">
+    <li>
+      <a 
+        mat-button
+        hover-class="mat-accent" 
+        routerLink="/create"
+        routerLinkActive="mat-accent">
+        <mat-icon>create</mat-icon>
+        <span>Create</span>
+      </a>
+    </li>
+
+    
+    <button 
+      hover-class="mat-accent" 
+      mat-button 
+      [matMenuTriggerFor]="userMenu">
+      <mat-icon>account_circle</mat-icon>
+      {{ user.username }}
+    </button>
+
+    <mat-menu #userMenu="matMenu" color="primary">
+      <button mat-menu-item (click)="onToUserPosts()">
+        <mat-icon>bookmark_border</mat-icon>
+        <span>My Posts</span>
+      </button>
+
+      <button mat-menu-item (click)="onSignOut()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Sign Out</span>
+      </button>
+    </mat-menu>
+
+
+  </ul>
+</mat-toolbar>

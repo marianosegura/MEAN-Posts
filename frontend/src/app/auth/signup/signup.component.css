@@ -1,0 +1,7 @@
+mat-form-field {
+  width: 100%;  /* push pass input and button in new line */
+}
+
+mat-spinner {
+  margin: auto;  /* center */
+}

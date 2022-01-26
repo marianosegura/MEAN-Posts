@@ -1,0 +1,49 @@
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+
+  <form *ngIf="!isLoading" [formGroup]="postForm" (submit)="onSubmit()">
+
+    <mat-form-field>
+      <input 
+        [formControlName]="'title'"
+        matInput 
+        name="title"
+        placeholder="Post Title"
+        type="text">  <!-- post?.title = bind to title only if post is not null -->
+      <mat-error *ngIf="postForm.get('title').invalid">Please enter a post title</mat-error>
+    </mat-form-field>
+
+    <div>
+      <button 
+        class="pick-image-btn"
+        mat-stroked-button
+        color="primary"
+        type="button"
+        (click)="imageInput.click()">Upload Image</button>
+      <input 
+        type="file" 
+        #imageInput
+        (change)="onImagePicked($event)">  <!-- activated by the above button -->
+    </div>
+    
+    <div class="image-preview" *ngIf="imagePreviewUrl && imagePreviewUrl !== '' && postForm.get('image').valid">
+      <img [src]="imagePreviewUrl" [alt]="postForm.value.title">
+    </div>
+
+    <mat-form-field>
+      <textarea
+        [formControlName]="'content'"
+        matInput
+        name="content"
+        placeholder="Post Content"
+        rows="6"></textarea>
+      <mat-error *ngIf="postForm.get('content').invalid">Please enter the post content</mat-error>
+    </mat-form-field>
+
+    <button 
+      mat-raised-button
+      color="accent"
+      type="submit">{{ inEditMode ? 'Update' : 'Add' }} Post</button>
+
+    </form>
+</mat-card>

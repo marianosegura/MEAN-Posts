@@ -1,0 +1,15 @@
+# node module folders
+backend/node_modules
+frontend/node_modules
+
+# Angular distribution folder
+frontend/dist
+
+# backend production api url
+frontend/src/environments/environment.prod.ts
+
+# mongo production api url
+backend/nodemon.json
+
+# ignore backend images changes
+backend/images
